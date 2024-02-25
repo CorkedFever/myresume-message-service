@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Corkedfever.Message.Service.props" />
+</Project>

@@ -1,0 +1,15 @@
+C:\Users\Jasmine\source\repos\MessageService\Corkedfever.Message.Business\bin\Debug\net8.0\Corkedfever.Message.Business.deps.json
+C:\Users\Jasmine\source\repos\MessageService\Corkedfever.Message.Business\bin\Debug\net8.0\Corkedfever.Message.Business.dll
+C:\Users\Jasmine\source\repos\MessageService\Corkedfever.Message.Business\bin\Debug\net8.0\Corkedfever.Message.Business.pdb
+C:\Users\Jasmine\source\repos\MessageService\Corkedfever.Message.Business\obj\Debug\net8.0\Corkedfever.Message.Business.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Jasmine\source\repos\MessageService\Corkedfever.Message.Business\obj\Debug\net8.0\Corkedfever.Message.Business.AssemblyInfoInputs.cache
+C:\Users\Jasmine\source\repos\MessageService\Corkedfever.Message.Business\obj\Debug\net8.0\Corkedfever.Message.Business.AssemblyInfo.cs
+C:\Users\Jasmine\source\repos\MessageService\Corkedfever.Message.Business\obj\Debug\net8.0\Corkedfever.Message.Business.csproj.CoreCompileInputs.cache
+C:\Users\Jasmine\source\repos\MessageService\Corkedfever.Message.Business\obj\Debug\net8.0\Corkedfever.Message.Business.dll
+C:\Users\Jasmine\source\repos\MessageService\Corkedfever.Message.Business\obj\Debug\net8.0\refint\Corkedfever.Message.Business.dll
+C:\Users\Jasmine\source\repos\MessageService\Corkedfever.Message.Business\obj\Debug\net8.0\Corkedfever.Message.Business.pdb
+C:\Users\Jasmine\source\repos\MessageService\Corkedfever.Message.Business\obj\Debug\net8.0\ref\Corkedfever.Message.Business.dll
+C:\Users\Jasmine\source\repos\MessageService\Corkedfever.Message.Business\obj\Debug\net8.0\Corkedfever.Message.Business.csproj.AssemblyReference.cache
+C:\Users\Jasmine\source\repos\MessageService\Corkedfever.Message.Business\bin\Debug\net8.0\Corkedfever.Message.Data.dll
+C:\Users\Jasmine\source\repos\MessageService\Corkedfever.Message.Business\bin\Debug\net8.0\Corkedfever.Message.Data.pdb
+C:\Users\Jasmine\source\repos\MessageService\Corkedfever.Message.Business\obj\Debug\net8.0\Corkedfe.D59BA725.Up2Date
