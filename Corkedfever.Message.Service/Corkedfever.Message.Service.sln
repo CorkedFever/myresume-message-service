@@ -11,9 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{413C94
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{EB200D6A-78E6-4F81-B990-9FFB6B4DA4D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Corkedfever.Message.Business", "..\Corkedfever.Message.Business\Corkedfever.Message.Business.csproj", "{B03E2918-3EB7-42A1-8358-5E376701EED7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Corkedfever.Message.Business", "..\Corkedfever.Message.Business\Corkedfever.Message.Business.csproj", "{B03E2918-3EB7-42A1-8358-5E376701EED7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Corkedfever.Message.Data", "..\Corkedfever.Message.Data\Corkedfever.Message.Data.csproj", "{6FA45EDD-63CE-4106-A2B9-2032D258417A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Corkedfever.Message.Data", "..\Corkedfever.Message.Data\Corkedfever.Message.Data.csproj", "{6FA45EDD-63CE-4106-A2B9-2032D258417A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Corkedfever.Client.Message", "..\Corkedfever.Client.Message\Corkedfever.Client.Message.csproj", "{12F229F5-682E-462C-8406-E243691198DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Corkedfever.Message.Testing", "..\Corkedfever.Message.Testing\Corkedfever.Message.Testing.csproj", "{DC14214C-6B5A-4640-969C-B1BE50CBC111}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{6FA45EDD-63CE-4106-A2B9-2032D258417A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FA45EDD-63CE-4106-A2B9-2032D258417A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FA45EDD-63CE-4106-A2B9-2032D258417A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12F229F5-682E-462C-8406-E243691198DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12F229F5-682E-462C-8406-E243691198DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12F229F5-682E-462C-8406-E243691198DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12F229F5-682E-462C-8406-E243691198DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC14214C-6B5A-4640-969C-B1BE50CBC111}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC14214C-6B5A-4640-969C-B1BE50CBC111}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC14214C-6B5A-4640-969C-B1BE50CBC111}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC14214C-6B5A-4640-969C-B1BE50CBC111}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,6 +53,8 @@ Global
 		{634C2641-253F-4A97-ADEC-F62F69A02B84} = {8BEC7DD5-F477-4B96-B398-E04DFBB6901C}
 		{B03E2918-3EB7-42A1-8358-5E376701EED7} = {8BEC7DD5-F477-4B96-B398-E04DFBB6901C}
 		{6FA45EDD-63CE-4106-A2B9-2032D258417A} = {8BEC7DD5-F477-4B96-B398-E04DFBB6901C}
+		{12F229F5-682E-462C-8406-E243691198DE} = {413C9463-2A1D-4AA0-B510-6716BF75887D}
+		{DC14214C-6B5A-4640-969C-B1BE50CBC111} = {EB200D6A-78E6-4F81-B990-9FFB6B4DA4D5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {77BA790D-30F5-4719-ACE6-37EF2363B0D2}
