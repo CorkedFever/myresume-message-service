@@ -14,7 +14,8 @@ namespace Corkedfever.Message.Business
         void DeleteMessage(int id);
         void UpdateMessage(MessageModel message, int id);
         MessageModel GetMessage(int id);
-        IEnumerable<MessageModel> GetMessages();
+        List<MessageModel> GetMessages();
+        List<MessageModel> GetAllMessagesByEmailAddress(string emailAddress);
     }
     public class MessageService : IMessageService
     {
@@ -39,9 +40,14 @@ namespace Corkedfever.Message.Business
         {
             return _messageRepository.GetMessage(id);
         }
-        public IEnumerable<MessageModel> GetMessages()
+        public List<MessageModel> GetMessages()
         {
             return _messageRepository.GetMessages();
+        }
+
+        public List<MessageModel> GetAllMessagesByEmailAddress(string emailAddress)
+        {
+            return _messageRepository.GetAllMessagesByEmail(emailAddress);
         }
     }
 }

@@ -9,14 +9,15 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-
+builder.Services.AddSingleton<IMessageService, MessageService>();
+builder.Services.AddSingleton<IMessageRepository, MessageRepository>();
 builder.Services.AddDbContextFactory<CorkedFeverDataContext>(options =>
 {
     options.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection"));
+               builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-builder.Services.AddSingleton<IMessageRepository, MessageRepository>();
-builder.Services.AddSingleton<IMessageService, MessageService>();
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

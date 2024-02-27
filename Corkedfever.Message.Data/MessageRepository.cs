@@ -16,7 +16,8 @@ namespace Corkedfever.Message.Data
         void DeleteMessage(int id);
         void UpdateMessage(MessageModel message, int id);
         MessageModel GetMessage(int id);
-        IEnumerable<MessageModel> GetMessages();
+        List<MessageModel> GetMessages();
+        List<MessageModel> GetAllMessagesByEmail(string emailAddress);
     }
     public class MessageRepository : IMessageRepository
     {
@@ -80,7 +81,7 @@ namespace Corkedfever.Message.Data
         {
             using (var context = _context.CreateDbContext())
             {
-                var message = context.Messages.Where(m => m.Id == id).FirstOrDefault();
+                var message = context.Messages.Where(m => m.Id == id).Include(m=>m.Email).FirstOrDefault();
                 return new MessageModel
                 {
                     EmailAddress = message.Email.EmailAddress,
@@ -91,11 +92,11 @@ namespace Corkedfever.Message.Data
                 };
             }
         }
-        public IEnumerable<MessageModel> GetMessages()
+        public List<MessageModel> GetMessages()
         {
             using (var context = _context.CreateDbContext())
             {
-                var messages = context.Messages.ToList();
+                var messages = context.Messages.Include(m=>m.Email).ToList();
                 var messageModels = new List<MessageModel>();
                 foreach (var message in messages)
                 {
@@ -108,6 +109,40 @@ namespace Corkedfever.Message.Data
                         Message = message.Message
                     });
                 }
+                return messageModels;
+            }
+        }
+
+        public List<MessageModel> GetAllMessagesByEmail(string emailAddress)
+        {
+            using (var context = _context.CreateDbContext())
+            {
+
+
+
+                //var messages = context.Messages.Where(m => m.Email.EmailAddress == emailAddress).ToList();
+                //var messageModels = new List<MessageModel>();
+                //foreach (var message in messages)
+                //{
+                //    messageModels.Add(new MessageModel
+                //    {
+                //        EmailAddress = message.Email.EmailAddress,
+                //        FirstName = message.Email.FirstName,
+                //        LastName = message.Email.LastName,
+                //        Title = message.Title,
+                //        Message = message.Message
+                //    });
+                //}
+                var messageModels = context.Messages.Where(m => m.Email.EmailAddress == emailAddress).
+                    Select(message => new MessageModel
+                    {
+                        EmailAddress = message.Email.EmailAddress,
+                        FirstName = message.Email.FirstName,
+                        LastName = message.Email.LastName,
+                        Title = message.Title,
+                        Message = message.Message
+                    }).ToList();
+
                 return messageModels;
             }
         }
