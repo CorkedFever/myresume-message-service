@@ -11,9 +11,6 @@ namespace Corkedfever.Message.Business
     public interface IMessageService
     {
         void AddMessage(MessageModel message);
-        void DeleteMessage(int id);
-        void UpdateMessage(MessageModel message, int id);
-        MessageModel GetMessage(int id);
         List<MessageModel> GetMessages();
         List<MessageModel> GetAllMessagesByEmailAddress(string emailAddress);
     }
@@ -27,18 +24,6 @@ namespace Corkedfever.Message.Business
         public void AddMessage(MessageModel message)
         {
             _messageRepository.AddMessage(message);
-        }
-        public void DeleteMessage(int id)
-        {
-            _messageRepository.DeleteMessage(id);
-        }
-        public void UpdateMessage(MessageModel message, int id)
-        {
-            _messageRepository.UpdateMessage(message, id);
-        }
-        public MessageModel GetMessage(int id)
-        {
-            return _messageRepository.GetMessage(id);
         }
         public List<MessageModel> GetMessages()
         {

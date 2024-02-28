@@ -13,9 +13,6 @@ namespace Corkedfever.Message.Data
     public interface IMessageRepository
     {
         void AddMessage(MessageModel message);
-        void DeleteMessage(int id);
-        void UpdateMessage(MessageModel message, int id);
-        MessageModel GetMessage(int id);
         List<MessageModel> GetMessages();
         List<MessageModel> GetAllMessagesByEmail(string emailAddress);
     }
@@ -30,73 +27,44 @@ namespace Corkedfever.Message.Data
         {
             using (var context = _context.CreateDbContext())
             {
-                var dbEmail = new Emails
+                var tempEmail = context.Emails.Where(e=>e.EmailAddress == message.EmailAddress).FirstOrDefault();
+
+                if (tempEmail != null)
                 {
-                    EmailAddress = message.EmailAddress,
-                    FirstName = message.FirstName,
-                    LastName = message.LastName,
-                    CreatedDate = DateTime.Now,
-                    UpdatedDate = DateTime.Now
-                };
+                       tempEmail.UpdatedDate = DateTime.Now;
+                        context.Update(tempEmail);
+
+                }
+                else
+                {
+                    tempEmail = new Emails
+                    {
+                        EmailAddress = message.EmailAddress,
+                        FirstName = message.FirstName,
+                        LastName = message.LastName,
+                        CreatedDate = DateTime.Now,
+                        UpdatedDate = DateTime.Now
+                    };
+                    context.Add(tempEmail);
+                }
                 var dbmessage = new Messages
                 {
-                    Email = dbEmail,
+                    Email = tempEmail,
                     Title = message.Title,
                     Message = message.Message,
                     CreatedDate = DateTime.Now,
                     UpdatedDate = DateTime.Now
                 };
-                context.Emails.Add(dbEmail); ;
                 context.Messages.Add(dbmessage);
                 context.SaveChanges();
             }
 
         }
-        public void DeleteMessage(int id)
-        {
-            using (var context = _context.CreateDbContext())
-            {
-                 var message = context.Messages.Find(id);
-                context.Messages.Remove(message);
-                context.SaveChanges();
-            }
-
-        }
-        public void UpdateMessage(MessageModel message, int id)
-        {
-            using (var context = _context.CreateDbContext())
-            {
-                var dbmessage = context.Messages.Where(m => m.Id == id).FirstOrDefault();
-                dbmessage.Email.EmailAddress = message.EmailAddress;
-                dbmessage.Title = message.Title;
-                dbmessage.Email.FirstName = message.FirstName;
-                dbmessage.Email.LastName = message.LastName;
-                dbmessage.Email.UpdatedDate = DateTime.Now;
-                context.Messages.Update(dbmessage);
-                context.SaveChanges();
-
-            }
-        }
-        public MessageModel GetMessage(int id)
-        {
-            using (var context = _context.CreateDbContext())
-            {
-                var message = context.Messages.Where(m => m.Id == id).Include(m=>m.Email).FirstOrDefault();
-                return new MessageModel
-                {
-                    EmailAddress = message.Email.EmailAddress,
-                    FirstName = message.Email.FirstName,
-                    LastName = message.Email.LastName,
-                    Title = message.Title,
-                    Message = message.Message
-                };
-            }
-        }
         public List<MessageModel> GetMessages()
         {
             using (var context = _context.CreateDbContext())
             {
-                var messages = context.Messages.Include(m=>m.Email).ToList();
+                var messages = context.Messages.Include(m=>m.Email).OrderBy(o=>o.CreatedDate).Take(10).ToList();
                 var messageModels = new List<MessageModel>();
                 foreach (var message in messages)
                 {

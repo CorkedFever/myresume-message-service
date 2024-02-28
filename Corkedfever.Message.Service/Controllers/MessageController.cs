@@ -24,10 +24,10 @@ namespace Corkedfever.Message.Service.Controllers
             return _messageService.GetMessages();
         }
         [HttpGet]
-        [Route("getSingle/{id}")]
-        public MessageModel GetSinglePost(int id)
+        [Route("getAllMessagesByEmailAddress/{emailAddress}")]
+        public IEnumerable<MessageModel> GetAllMessagesByEmailAddress(string emailAddress)
         {
-            return _messageService.GetMessage(id);
+            return _messageService.GetAllMessagesByEmailAddress(emailAddress); 
         }
         [HttpPost]
         [Route("submit")]
