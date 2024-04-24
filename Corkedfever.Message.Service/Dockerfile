@@ -11,15 +11,17 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0-nanoserver-1809 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Corkedfever.Message.Service.csproj", "."]
-RUN dotnet restore "./Corkedfever.Message.Service.csproj"
+RUN DIR
+COPY . .
+RUN DIR
+RUN dotnet restore "./Corkedfever.Message.Service/Corkedfever.Message.Service.csproj"
 COPY . .
 WORKDIR "/src/."
-RUN dotnet build "./Corkedfever.Message.Service.csproj" -c %BUILD_CONFIGURATION% -o /app/build
+RUN dotnet build "./Corkedfever.Message.Service/Corkedfever.Message.Service.csproj" -c %BUILD_CONFIGURATION% -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./Corkedfever.Message.Service.csproj" -c %BUILD_CONFIGURATION% -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./Corkedfever.Message.Service/Corkedfever.Message.Service.csproj" -c %BUILD_CONFIGURATION% -o /app/publish
 
 FROM base AS final
 WORKDIR /app

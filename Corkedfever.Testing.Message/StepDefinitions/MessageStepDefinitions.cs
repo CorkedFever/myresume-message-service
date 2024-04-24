@@ -39,7 +39,7 @@ namespace Corkedfever.Testing.Message.StepDefinitions
             MessageModel messageModel = _scenarioContext.Get<MessageModel>("message");
 
             //create a new message client
-            MessageClient messageClient = new MessageClient("http://localhost:44383");
+            MessageClient messageClient = new MessageClient("http://localhost:26010");
 
             //submit the message
             messageClient.SubmitAsync(messageModel);
@@ -52,7 +52,7 @@ namespace Corkedfever.Testing.Message.StepDefinitions
             MessageModel messageModel = _scenarioContext.Get<MessageModel>("message");
 
             //create a new message client
-            MessageClient messageClient = new MessageClient("http://localhost:44383");
+            MessageClient messageClient = new MessageClient("http://localhost:26010");
 
             //get the message from the database
             List<MessageModel> messagesFromDatabase = messageClient.GetAllMessagesByEmailAddressAsync(messageModel.EmailAddress).Result.ToList();
@@ -78,7 +78,7 @@ namespace Corkedfever.Testing.Message.StepDefinitions
             MessageModel messageModel = _scenarioContext.Get<MessageModel>("message");
             MessageModel messageModel2 = _scenarioContext.Get<MessageModel>("message2");
             //create a new message client
-            MessageClient messageClient = new MessageClient("localhost:44383");
+            MessageClient messageClient = new MessageClient("http://localhost:26010");
 
             messageClient.SubmitAsync(messageModel);
             messageClient.SubmitAsync(messageModel2);
@@ -92,7 +92,7 @@ namespace Corkedfever.Testing.Message.StepDefinitions
             MessageModel messageModel2 = _scenarioContext.Get<MessageModel>("message2");
 
             //create a new message client
-            MessageClient messageClient = new MessageClient("http://localhost:44383");
+            MessageClient messageClient = new MessageClient("http://localhost:26010");
 
             //get the message from the database
             List<MessageModel> messagesFromDatabase = messageClient.GetAllMessagesByEmailAddressAsync(messageModel.EmailAddress).Result.ToList();

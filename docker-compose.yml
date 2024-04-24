@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  corkedfever.message.service:
+    image: ${DOCKER_REGISTRY-}corkedfevermessageservice
+    build:
+      context: .
+      dockerfile: Corkedfever.Message.Service\Dockerfile

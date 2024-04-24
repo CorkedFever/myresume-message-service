@@ -5,8 +5,9 @@ using System.Data.Common;
 using System.Text;
 using System.Threading.Tasks;
 using Corkedfever.Message.Data.Models;
-using Corkedfever.Message.Data.Models.DBModels;
 using Microsoft.EntityFrameworkCore;
+using Corkedfever.Common.Data;
+using Corkedfever.Common.Data.DBModels;
 
 namespace Corkedfever.Message.Data
 {
@@ -27,7 +28,7 @@ namespace Corkedfever.Message.Data
         {
             using (var context = _context.CreateDbContext())
             {
-                var tempEmail = context.Emails.Where(e=>e.EmailAddress == message.EmailAddress).FirstOrDefault();
+                var tempEmail = context.Email.Where(e=>e.EmailAddress == message.EmailAddress).FirstOrDefault();
 
                 if (tempEmail != null)
                 {
@@ -45,7 +46,7 @@ namespace Corkedfever.Message.Data
                         CreatedDate = DateTime.Now,
                         UpdatedDate = DateTime.Now
                     };
-                    context.Add(tempEmail);
+                    context.Email.Add(tempEmail);
                 }
                 var dbmessage = new Messages
                 {
@@ -55,7 +56,7 @@ namespace Corkedfever.Message.Data
                     CreatedDate = DateTime.Now,
                     UpdatedDate = DateTime.Now
                 };
-                context.Messages.Add(dbmessage);
+                context.Message.Add(dbmessage);
                 context.SaveChanges();
             }
 
@@ -64,7 +65,7 @@ namespace Corkedfever.Message.Data
         {
             using (var context = _context.CreateDbContext())
             {
-                var messages = context.Messages.Include(m=>m.Email).OrderBy(o=>o.CreatedDate).Take(10).ToList();
+                var messages = context.Message.Include(m=>m.Email).OrderBy(o=>o.CreatedDate).Take(10).ToList();
                 var messageModels = new List<MessageModel>();
                 foreach (var message in messages)
                 {
@@ -85,23 +86,7 @@ namespace Corkedfever.Message.Data
         {
             using (var context = _context.CreateDbContext())
             {
-
-
-
-                //var messages = context.Messages.Where(m => m.Email.EmailAddress == emailAddress).ToList();
-                //var messageModels = new List<MessageModel>();
-                //foreach (var message in messages)
-                //{
-                //    messageModels.Add(new MessageModel
-                //    {
-                //        EmailAddress = message.Email.EmailAddress,
-                //        FirstName = message.Email.FirstName,
-                //        LastName = message.Email.LastName,
-                //        Title = message.Title,
-                //        Message = message.Message
-                //    });
-                //}
-                var messageModels = context.Messages.Where(m => m.Email.EmailAddress == emailAddress).
+                var messageModels = context.Message.Where(m => m.Email.EmailAddress == emailAddress).
                     Select(message => new MessageModel
                     {
                         EmailAddress = message.Email.EmailAddress,

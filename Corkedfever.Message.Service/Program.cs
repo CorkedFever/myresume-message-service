@@ -3,6 +3,7 @@ using Corkedfever.Message.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using System.Numerics;
+using Corkedfever.Common.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,8 +14,14 @@ builder.Services.AddSingleton<IMessageService, MessageService>();
 builder.Services.AddSingleton<IMessageRepository, MessageRepository>();
 builder.Services.AddDbContextFactory<CorkedFeverDataContext>(options =>
 {
-    options.UseSqlServer(
-               builder.Configuration.GetConnectionString("DefaultConnection"));
+    if (builder.Environment.IsDevelopment())
+    {
+        options.UseSqlServer(builder.Configuration.GetConnectionString("DevelopmentConnection"), b => b.MigrationsAssembly("Corkedfever.Jobs.Service"));
+    }
+    else
+    {
+        options.UseSqlServer(builder.Configuration.GetConnectionString("ContainerConnection"), b => b.MigrationsAssembly("Corkedfever.Jobs.Service"));
+    }
 });
 
 
@@ -25,11 +32,8 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
