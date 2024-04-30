@@ -96,3 +96,7 @@
 /Corkedfever.Message.Service/.vs/Corkedfever.Message.Service/FileContentIndex/e762fecc-1788-4a03-b5f2-d17d55b3e732.vsidx
 /Corkedfever.Testing.Message/bin/Debug/net6.0
 /Corkedfever.Testing.Message/obj
+/obj/Docker/CachedComposeConfigFilePaths.cache
+/obj/Docker/DockerDevelopmentMode.cache
+/obj/Docker/HashOfDockerArtifacts.cache
+/obj/Docker/MergedDockerCompose2.cache
