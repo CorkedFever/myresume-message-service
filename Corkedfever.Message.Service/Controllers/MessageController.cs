@@ -10,30 +10,65 @@ namespace Corkedfever.Message.Service.Controllers
 {
     [ApiController]
     [Route("messages")]
-    public class MessageController
+    public class MessageController : ControllerBase
     {
         private readonly IMessageService _messageService;
         public MessageController(IMessageService messageService)
         {
             _messageService = messageService;
         }
+
         [HttpGet]
         [Route("getAll")]
-        public IEnumerable<MessageModel> GetAll()
+        [ProducesResponseType(typeof(List<MessageModel>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult GetAll()
         {
-            return _messageService.GetMessages();
+            try
+            {
+                return Ok(_messageService.GetMessages());
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
+
         [HttpGet]
         [Route("getAllMessagesByEmailAddress/{emailAddress}")]
-        public IEnumerable<MessageModel> GetAllMessagesByEmailAddress(string emailAddress)
+        [ProducesResponseType(typeof(List<MessageModel>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult GetAllMessagesByEmailAddress(string emailAddress)
         {
-            return _messageService.GetAllMessagesByEmailAddress(emailAddress); 
+            try
+            {
+                _messageService.GetAllMessagesByEmailAddress(emailAddress);
+                return StatusCode(StatusCodes.Status201Created);
+
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+
         }
+
         [HttpPost]
         [Route("submit")]
-        public void SubmitMessage([FromBody]MessageModel message)
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult SubmitMessage([FromBody]MessageModel message)
         {
-            _messageService.AddMessage(message);
+            try
+            {
+                _messageService.AddMessage(message);
+                return StatusCode(StatusCodes.Status201Created);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
     }

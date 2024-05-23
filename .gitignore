@@ -100,3 +100,4 @@
 /obj/Docker/DockerDevelopmentMode.cache
 /obj/Docker/HashOfDockerArtifacts.cache
 /obj/Docker/MergedDockerCompose2.cache
+/Corkedfever.Message.Service/obj/Container
